@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar-mc
+spec:
+  volumes:
+    - name: html
+      emptyDir: {}
+  containers:
+    - name: first
+      image: nginx
+      volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: html
+    - name: second
+      image: debian
+      volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: html
+      command: ["/bin/sh", "-c"]
+      args:
+        - |
+          while true; do
+            date >> /usr/share/nginx/html/index.html
+            sleep 10
+          done

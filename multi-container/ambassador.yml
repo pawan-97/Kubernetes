@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ambassador
+spec:
+  containers:
+    - name: webapp
+      image: training/webapp
+    - name: nginx
+      image: nginx:alpine
+      volumeMounts:
+        - mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+          name: nginx-proxy-config
+  volumes:
+    - name: nginx-proxy-config
+      configMap:
+        name: mc-proxy-config
