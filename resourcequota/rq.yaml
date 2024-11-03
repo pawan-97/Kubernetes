@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: dev-resource-limit
+  namespace: dev
+spec:
+  hard:
+    requests.cpu: "0.5"
+    requests.memory: "500M"
+    limits.cpu: "0.5"
+    limits.memory: "500M"
