@@ -1,0 +1,19 @@
+
+# Mount the PersistentVolumeClaim in a Pod running the image nginx at the
+# mount path /var/log/nginx.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+spec:
+  volumes:
+  - name: app-storage
+    persistentVolumeClaim:
+      claimName: logs-pvc
+  containers:
+  - image: nginx
+    name: app
+    volumeMounts:
+    - mountPath: "/var/log/nginx"
+      name: app-storage

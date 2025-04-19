@@ -1,0 +1,14 @@
+# Create a PersistentVolumeClaim named logs-pvc. The access it uses is
+# ReadWriteOnce. Request a capacity of 1Gi. Ensure that the status of the Persis‐
+# tentVolume shows Bound.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: logs-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 256Mi
+  storageClassName: ""

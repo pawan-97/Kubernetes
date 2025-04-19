@@ -1,0 +1,19 @@
+# Create a PersistentVolume named logs-pv that maps to the hostPath /tmp/logs.
+# The access mode should be ReadWriteOnce and ReadOnlyMany. Provision a stor‐
+# age capacity of 2Gi. Assign the reclaim policy Delete and an empty string as the
+# storage class. Ensure that the status of the PersistentVolume shows Available.
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: logs-pv
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+  - ReadWriteOnce
+  - ReadOnlyMany
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: ""
+  hostPath:
+    path: /tmp/logs
